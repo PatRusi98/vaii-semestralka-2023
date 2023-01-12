@@ -1,6 +1,12 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CarController;
+use App\Http\Controllers\Admin\ChampionshipController;
+use App\Http\Controllers\Admin\DriversController;
+use App\Http\Controllers\Admin\PointSystemController;
+use App\Http\Controllers\Admin\TeamsController;
+use App\Http\Controllers\Admin\TimeTrialsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +37,12 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(function() {
     Route::get('/', [AdminController::class, 'index'])->name('index');
+    Route::resource('/championships', ChampionshipController::class);
+    Route::resource('/time-trials', TimeTrialsController::class);
+    Route::resource('/drivers', DriversController::class);
+    Route::resource('/teams', TeamsController::class);
+    Route::resource('/cars', CarController::class);
+    Route::resource('/point-systems', PointSystemController::class);
 });
 
 require __DIR__.'/auth.php';

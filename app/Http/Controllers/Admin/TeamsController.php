@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Teams;
 use Illuminate\Http\Request;
 
 class TeamsController extends Controller
@@ -14,7 +15,8 @@ class TeamsController extends Controller
      */
     public function index()
     {
-        return view('admin.teams.index');
+        $teams = Teams::all();
+        return view('admin.teams.index', compact('teams'));
     }
 
     /**

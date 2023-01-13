@@ -26,12 +26,24 @@
             </button>
         </div>
         <nav :class="{'block': open, 'hidden': !open}" class="flex-grow px-4 pb-4 md:block md:pb-0 md:overflow-y-auto">
-            <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="{{route('admin.championships.index')}}">Championships</a>
-            <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="{{route('admin.time-trials.index')}}">Time Trials</a>
-            <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="{{route('admin.drivers.index')}}">Drivers</a>
-            <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="{{route('admin.teams.index')}}">Teams</a>
-            <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="{{route('admin.cars.index')}}">Cars</a>
-            <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="{{route('admin.point-systems.index')}}">Point systems</a>
+            <x-admin-nav-link :href="route('admin.championships.index')" :active="request()->routeIs('admin.championships.index')">
+                {{ __('Championships') }}
+            </x-admin-nav-link>
+            <x-admin-nav-link :href="route('admin.time-trials.index')" :active="request()->routeIs('admin.time-trials.index')">
+                {{ __('Time Trials') }}
+            </x-admin-nav-link>
+            <x-admin-nav-link :href="route('admin.drivers.index')" :active="request()->routeIs('admin.drivers.index')">
+                {{ __('Drivers') }}
+            </x-admin-nav-link>
+            <x-admin-nav-link :href="route('admin.teams.index')" :active="request()->routeIs('admin.teams.index')">
+                {{ __('Teams') }}
+            </x-admin-nav-link>
+            <x-admin-nav-link :href="route('admin.cars.index')" :active="request()->routeIs('admin.cars.index')">
+                {{ __('Cars') }}
+            </x-admin-nav-link>
+            <x-admin-nav-link :href="route('admin.point-systems.index')" :active="request()->routeIs('admin.point-systems.index')">
+                {{ __('Point Systems') }}
+            </x-admin-nav-link>
             <a class="block px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg dark:bg-transparent dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus:text-white dark:hover:text-white dark:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="{{route('dashboard')}}">Main Page</a>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
@@ -44,7 +56,7 @@
             </form>
         </nav>
     </div>
-    <main class="m-2 p-8">
+    <main class="m-2 p-8 w-full">
         {{ $slot }}
     </main>
 </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\PointSystem;
 use Illuminate\Http\Request;
 
 class PointSystemController extends Controller
@@ -14,7 +15,8 @@ class PointSystemController extends Controller
      */
     public function index()
     {
-        return view('admin.point-systems.index');
+        $pointSystems = PointSystem::all();
+        return view('admin.point-systems.index', compact('pointSystems'));
     }
 
     /**

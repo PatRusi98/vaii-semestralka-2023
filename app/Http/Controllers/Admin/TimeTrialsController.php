@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\TimeTrial;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\TimeBasedUuidFactoryInterface;
 
 class TimeTrialsController extends Controller
 {
@@ -14,7 +16,8 @@ class TimeTrialsController extends Controller
      */
     public function index()
     {
-        return view('admin.time-trials.index');
+        $timeTrials = TimeTrial::all();
+        return view('admin.time-trials.index', compact('timeTrials'));
     }
 
     /**

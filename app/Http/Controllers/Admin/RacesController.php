@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Race;
 use Illuminate\Http\Request;
 
 class RacesController extends Controller
@@ -14,7 +15,8 @@ class RacesController extends Controller
      */
     public function index()
     {
-        return view('admin.races.index');
+        $races = Race::all();
+        return view('admin.races.index', compact('races'));
     }
 
     /**

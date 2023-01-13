@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Championship;
 use Illuminate\Http\Request;
 
 class ChampionshipController extends Controller
@@ -14,7 +15,8 @@ class ChampionshipController extends Controller
      */
     public function index()
     {
-        return view('admin.championships.index');
+        $championships = Championship::all();
+        return view('admin.championships.index', compact('championships'));
     }
 
     /**

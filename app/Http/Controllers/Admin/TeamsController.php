@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TeamStoreRequest;
+use App\Models\Country;
 use App\Models\Teams;
 use Illuminate\Http\Request;
 
@@ -26,7 +28,8 @@ class TeamsController extends Controller
      */
     public function create()
     {
-        //
+        $countries = Country::all();
+        return view('admin.teams.create', compact('countries'));
     }
 
     /**
@@ -35,9 +38,16 @@ class TeamsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TeamStoreRequest $request)
     {
-        //
+        Teams::create([
+            'name' => $request->name,
+            'short_name' => $request->short_name,
+            'manager' => $request->manager,
+            'nationality' => $request->nationality
+        ]);
+
+        return to_route('admin.teams.index')->with('success', 'Team created successfully.');
     }
 
     /**
@@ -57,9 +67,10 @@ class TeamsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Teams $team)
     {
-        //
+        $countries = Country::all();
+        return view('admin.teams.edit', compact('team', 'countries'));
     }
 
     /**
@@ -69,9 +80,23 @@ class TeamsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Teams $team)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'short_name' => 'required',
+            'manager' => 'required',
+            'nationality' => 'required'
+        ]);
+
+        $team->update([
+            'name' => $request->name,
+            'short_name' => $request->short_name,
+            'manager' => $request->manager,
+            'nationality' => $request->nationality
+        ]);
+
+        return to_route('admin.teams.index')->with('success', 'Team edited successfully.');
     }
 
     /**
@@ -80,8 +105,9 @@ class TeamsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Teams $team)
     {
-        //
+        $team->delete();
+        return to_route('admin.teams.index')->with('success', 'Team deleted successfully.');
     }
 }

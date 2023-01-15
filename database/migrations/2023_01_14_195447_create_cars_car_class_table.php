@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('time_trials', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('circuit');
-            $table->dateTime('from');
-            $table->dateTime('to');
-            $table->boolean('active');
-            $table->timestamps();
+        Schema::create('cars_car_class', function (Blueprint $table) {
+            $table->foreignId('car_id')->constrained();
+            $table->foreignId('car_class_id')->constrained();
         });
     }
 
@@ -31,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('time_trials');
+        Schema::dropIfExists('cars_car_class');
     }
 };

@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Championship extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name', 'active', 'multiclass', 'class1', 'class2', 'class3'];
 }

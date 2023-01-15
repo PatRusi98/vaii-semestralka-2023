@@ -26,7 +26,7 @@ class RacesController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.races.create');
     }
 
     /**

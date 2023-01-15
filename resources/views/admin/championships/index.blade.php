@@ -7,30 +7,46 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="grid gap-6 mb-6 md:grid-cols-3">
+                @foreach($championships as $championship)
+                    <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+                        <a href="{{ route('admin.championships.show', $championship->id) }}">
+                            <h5 class="mb-5 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $championship->name }}</h5>
+                        </a>
+                        <p class="mb-1 font-normal text-gray-700 dark:text-gray-400">Active: @if($championship->active == 1 ) yes @else no @endif </p>
+                        <p class="mb-5 font-normal text-gray-700 dark:text-gray-400">Classes:
+                            @if($championship->class2 == null )
+                                {{$championship->class1}}
+                            @elseif($championship->class3 == null )
+                                {{$championship->class1}}, {{$championship->class2}}
+                            @else
+                                {{$championship->class1}}, {{$championship->class2}}, {{$championship->class3}}
+                            @endif </p>
 
-            <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-                <a href="#">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                </a>
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    Read more
-                    <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                </a>
+                        <div class="grid gap-6 md:grid-cols-2">
+                            <a href="{{ route('admin.championships.edit', $championship->id) }}" class="inline-flex items-center px-14 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                Edit
+                            </a>
+                            <a href="{{ route('admin.championships.edit', $championship->id) }}" class="inline-flex items-center px-11 py-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
+                                Delete
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
+
+                    <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+                        <a href="{{ route('admin.championships.show', 1) }}">
+                            <h5 class="mb-5 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Add new...</h5>
+                        </a>
+                        <p class="mb-1 font-normal text-gray-700 dark:text-gray-400"></p>
+                        <p class="mb-5 font-normal text-gray-700 dark:text-gray-400"></p>
+
+                        <div class="grid gap-6 md:grid-cols-2">
+
+                        </div>
+                    </div>
+
             </div>
-
-
-            <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-                <a href="#">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-                </a>
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    Read more
-                    <svg aria-hidden="true" class="w-4 h-4 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                </a>
-            </div>
-
         </div>
     </div>
 </x-admin-layout>

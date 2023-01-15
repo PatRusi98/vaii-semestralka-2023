@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="font-sans antialiased">
@@ -28,9 +29,6 @@
         <nav :class="{'block': open, 'hidden': !open}" class="flex-grow px-4 pb-4 md:block md:pb-0 md:overflow-y-auto">
             <x-admin-nav-link :href="route('admin.championships.index')" :active="request()->routeIs('admin.championships.index')">
                 {{ __('Championships') }}
-            </x-admin-nav-link>
-            <x-admin-nav-link :href="route('admin.time-trials.index')" :active="request()->routeIs('admin.time-trials.index')">
-                {{ __('Time Trials') }}
             </x-admin-nav-link>
             <x-admin-nav-link :href="route('admin.drivers.index')" :active="request()->routeIs('admin.drivers.index')">
                 {{ __('Drivers') }}

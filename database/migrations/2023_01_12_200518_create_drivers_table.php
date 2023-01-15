@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('surname');
             $table->string('steam_id');
             $table->string('nationality');
-            $table->bigInteger('team');
+            $table->string('team');
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PointSystemStoreRequest;
 use App\Models\PointSystem;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,7 @@ class PointSystemController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.point-systems.create');
     }
 
     /**
@@ -35,9 +36,31 @@ class PointSystemController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PointSystemStoreRequest $request)
     {
-        //
+        PointSystem::create([
+            'name' => $request->name,
+            'pole_position' => $request->pole_position,
+            'fastest_lap' => $request->fastest_lap,
+            'first' => $request->first,
+            'second' => $request->second,
+            'third' => $request->third,
+            'fourth' => $request->fourth,
+            'fifth' => $request->fifth,
+            'sixth' => $request->sixth,
+            'seventh' => $request->seventh,
+            'eighth' => $request->eighth,
+            'ninth' => $request->ninth,
+            'tenth' => $request->tenth,
+            'eleventh' => $request->eleventh,
+            'twelvth' => $request->twelvth,
+            'thirteenth' => $request->thirteenth,
+            'fourteenth' => $request->fourteenth,
+            'fifteenth' => $request->fifteenth,
+            'leader_distance' => $request->leader_distance
+        ]);
+
+        return to_route('admin.point-systems.index')->with('success', 'Point system created successfully.');
     }
 
     /**
@@ -57,9 +80,9 @@ class PointSystemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(PointSystem $pointSystem)
     {
-        //
+        return view('admin.point-systems.edit', compact('pointSystem'));
     }
 
     /**
@@ -69,9 +92,53 @@ class PointSystemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PointSystemStoreRequest $request, PointSystem $pointSystem)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'pole_position' => 'required',
+            'fastest_lap' => 'required',
+            'first' => 'required',
+            'second' => 'required',
+            'third' => 'required',
+            'fourth' => 'required',
+            'fifth' => 'required',
+            'sixth' => 'required',
+            'seventh' => 'required',
+            'eighth' => 'required',
+            'ninth' => 'required',
+            'tenth' => 'required',
+            'eleventh' => 'required',
+            'twelvth' => 'required',
+            'thirteenth' => 'required',
+            'fourteenth' => 'required',
+            'fifteenth' => 'required',
+            'leader_distance' => 'required',
+        ]);
+
+        $pointSystem->update([
+            'name' => $request->name,
+            'pole_position' => $request->pole_position,
+            'fastest_lap' => $request->fastest_lap,
+            'first' => $request->first,
+            'second' => $request->second,
+            'third' => $request->third,
+            'fourth' => $request->fourth,
+            'fifth' => $request->fifth,
+            'sixth' => $request->sixth,
+            'seventh' => $request->seventh,
+            'eighth' => $request->eighth,
+            'ninth' => $request->ninth,
+            'tenth' => $request->tenth,
+            'eleventh' => $request->eleventh,
+            'twelvth' => $request->twelvth,
+            'thirteenth' => $request->thirteenth,
+            'fourteenth' => $request->fourteenth,
+            'fifteenth' => $request->fifteenth,
+            'leader_distance' => $request->leader_distance
+        ]);
+
+        return to_route('admin.point-systems.index')->with('success', 'Point system edited successfully.');
     }
 
     /**
@@ -80,8 +147,9 @@ class PointSystemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(PointSystem $pointSystem)
     {
-        //
+        $pointSystem->delete();
+        return to_route('admin.point-systems.index')->with('success', 'Point system deleted successfully.');
     }
 }

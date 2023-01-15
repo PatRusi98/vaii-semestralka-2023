@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Teams extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name', 'short_name', 'manager', 'nationality'];
 }

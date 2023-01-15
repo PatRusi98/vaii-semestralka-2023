@@ -9,70 +9,78 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
             <div class="flex justify-end">
-                <button type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Add New</button>
+                <a href="{{ route('admin.point-systems.create')}}" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Add New</a>
             </div>
 
             <div class="relative overflow-x-auto">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <table class="w-full text-sm text-left text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                     <tr>
                         <th scope="col" class="px-6 py-3">
-                            Product name
+                            Name
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Color
+                            1st
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Category
+                            2nd
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Price
+                            3rd
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Pole Position
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Fastest Lap
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Leader Distance
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+
                         </th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Apple MacBook Pro 17"
-                        </th>
-                        <td class="px-6 py-4">
-                            Sliver
-                        </td>
-                        <td class="px-6 py-4">
-                            Laptop
-                        </td>
-                        <td class="px-6 py-4">
-                            $2999
-                        </td>
-                    </tr>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Microsoft Surface Pro
-                        </th>
-                        <td class="px-6 py-4">
-                            White
-                        </td>
-                        <td class="px-6 py-4">
-                            Laptop PC
-                        </td>
-                        <td class="px-6 py-4">
-                            $1999
-                        </td>
-                    </tr>
-                    <tr class="bg-white dark:bg-gray-800">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Magic Mouse 2
-                        </th>
-                        <td class="px-6 py-4">
-                            Black
-                        </td>
-                        <td class="px-6 py-4">
-                            Accessories
-                        </td>
-                        <td class="px-6 py-4">
-                            $99
-                        </td>
-                    </tr>
+
+                    @foreach($pointSystems as $pointSystem)
+                        <tr class="bg-white border-t">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                {{ $pointSystem->name }}
+                            </th>
+                            <td class="px-6 py-4">
+                                {{ $pointSystem->first}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $pointSystem->second }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $pointSystem->third }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $pointSystem->pole_position }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $pointSystem->fastest_lap }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $pointSystem->leader_distance }}
+                            </td>
+                            <td class="px-6 py-4">
+                                <div class="flex">
+                                    <a href="{{ route('admin.point-systems.edit', $pointSystem->id) }}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Edit</a>
+                                    <form class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+                                          method="POST" action="{{ route('admin.point-systems.destroy', $pointSystem->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button id="button" type="submit">Delete</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+
                     </tbody>
                 </table>
             </div>

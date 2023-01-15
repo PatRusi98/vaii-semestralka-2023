@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ChampionsipStoreRequest;
+use App\Models\CarClass;
 use App\Models\Championship;
 use Illuminate\Http\Request;
 
@@ -26,7 +28,8 @@ class ChampionshipController extends Controller
      */
     public function create()
     {
-        //
+        $carClasses = CarClass::all();
+        return view('admin.championships.create', compact('carClasses'));
     }
 
     /**
@@ -35,9 +38,18 @@ class ChampionshipController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ChampionsipStoreRequest $request)
     {
-        //
+        Championship::create([
+            'name' => $request->name,
+            'active' => $request->active,
+            'multiclass' => $request->multiclass,
+            'class1' => $request->class1,
+            'class2' => $request->class2,
+            'class3' => $request->class3
+        ]);
+
+        return to_route('admin.championships.index')->with('success', 'Championship created successfully.');
     }
 
     /**
@@ -57,9 +69,10 @@ class ChampionshipController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Championship $championship)
     {
-        //
+        $carClasses = CarClass::all();
+        return view('admin.cars.edit', compact('championship', 'carClasses'));
     }
 
     /**
@@ -69,9 +82,25 @@ class ChampionshipController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Championship $championship)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'active' => 'required',
+            'multiclass' => 'required',
+            'class1' => 'required'
+        ]);
+
+        $championship->update([
+            'name' => $request->name,
+            'active' => $request->active,
+            'multiclass' => $request->multiclass,
+            'class1' => $request->class1,
+            'class2' => $request->class2,
+            'class3' => $request->class3
+        ]);
+
+        return to_route('admin.championships.index')->with('success', 'Championship edited successfully.');
     }
 
     /**
@@ -80,8 +109,9 @@ class ChampionshipController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Championship $championship)
     {
-        //
+        $championship->delete();
+        return to_route('admin.championships.index')->with('success', 'Championship deleted successfully.');
     }
 }

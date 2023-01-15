@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Country;
 use App\Models\Driver;
+use App\Http\Requests\DriverStoreRequest;
+use App\Models\Teams;
 use Illuminate\Http\Request;
 
 class DriversController extends Controller
@@ -26,7 +29,9 @@ class DriversController extends Controller
      */
     public function create()
     {
-        //
+        $countries = Country::all();
+        $teams = Teams::all();
+        return view('admin.drivers.create', compact('countries', 'teams'));
     }
 
     /**
@@ -35,9 +40,17 @@ class DriversController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DriverStoreRequest $request)
     {
-        //
+        Driver::create([
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'steam_id' => $request->steam_id,
+            'nationality' => $request->nationality,
+            'team' => $request->team
+        ]);
+
+        return to_route('admin.drivers.index')->with('success', 'Driver created successfully.');
     }
 
     /**
@@ -57,9 +70,11 @@ class DriversController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Driver $driver)
     {
-        //
+        $countries = Country::all();
+        $teams = Teams::all();
+        return view('admin.drivers.edit', compact('driver', 'countries', 'teams'));
     }
 
     /**
@@ -69,9 +84,25 @@ class DriversController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Driver $driver)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'surname' => 'required',
+            'steam_id' => 'required',
+            'nationality' => 'required',
+            'team' => 'required'
+        ]);
+
+        $driver->update([
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'steam_id' => $request->steam_id,
+            'nationality' => $request->nationality,
+            'team' => $request->team
+        ]);
+
+        return to_route('admin.drivers.index')->with('success', 'Driver edited successfully.');
     }
 
     /**
@@ -80,8 +111,9 @@ class DriversController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Driver $driver)
     {
-        //
+        $driver->delete();
+        return to_route('admin.drivers.index')->with('success', 'Driver deleted successfully.');
     }
 }

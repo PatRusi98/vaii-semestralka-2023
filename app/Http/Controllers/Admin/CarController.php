@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CarStoreRequest;
 use App\Models\Car;
+use App\Models\CarClass;
+use App\Models\Simulator;
 use Illuminate\Http\Request;
 
 class CarController extends Controller
@@ -26,7 +29,9 @@ class CarController extends Controller
      */
     public function create()
     {
-        return view('admin.cars.create');
+        $carClasses = CarClass::all();
+        $simulators = Simulator::all();
+        return view('admin.cars.create', compact('carClasses', 'simulators'));
     }
 
     /**
@@ -35,9 +40,15 @@ class CarController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CarStoreRequest $request)
     {
-        //
+        Car::create([
+            'name' => $request->name,
+            'simulator' => $request->simulator,
+            'class' => $request->class
+        ]);
+
+        return to_route('admin.cars.index')->with('success', 'Car created successfully.');
     }
 
     /**
@@ -57,9 +68,11 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Car $car)
     {
-        //
+        $carClasses = CarClass::all();
+        $simulators = Simulator::all();
+        return view('admin.cars.edit', compact('car', 'carClasses','simulators'));
     }
 
     /**
@@ -69,9 +82,21 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Car $car)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'simulator' => 'required',
+            'class' => 'required'
+        ]);
+
+        $car->update([
+           'name' => $request->name,
+           'simulator' => $request->simulator,
+           'class' => $request->class
+        ]);
+
+        return to_route('admin.cars.index')->with('success', 'Car edited successfully.');
     }
 
     /**
@@ -80,8 +105,9 @@ class CarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Car $car)
     {
-        //
+        $car->delete();
+        return to_route('admin.cars.index')->with('success', 'Car deleted successfully.');
     }
 }

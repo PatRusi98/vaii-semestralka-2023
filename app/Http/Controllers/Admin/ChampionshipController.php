@@ -40,6 +40,20 @@ class ChampionshipController extends Controller
      */
     public function store(ChampionsipStoreRequest $request)
     {
+        if ($request->class2 == $request->class1 ||
+            $request->class3 == $request->class1 ||
+            $request->class3 == $request->class2)
+        {
+            return back()->with('warning', 'Please choose different classes.');
+        }
+
+        if (($request->class2.isNonEmptyString() && $request->class1.isEmptyOrNullString()) ||
+            ($request->class3.isNonEmptyString() && $request->class2.isEmptyOrNullString()) ||
+            ($request->class3.isNonEmptyString() && $request->class1.isEmptyOrNullString()))
+        {
+            return back()->with('warning', 'Please choose classes in right order.');
+        }
+
         Championship::create([
             'name' => $request->name,
             'active' => $request->active,
@@ -72,7 +86,7 @@ class ChampionshipController extends Controller
     public function edit(Championship $championship)
     {
         $carClasses = CarClass::all();
-        return view('admin.cars.edit', compact('championship', 'carClasses'));
+        return view('admin.championships.edit', compact('championship', 'carClasses'));
     }
 
     /**
@@ -84,6 +98,20 @@ class ChampionshipController extends Controller
      */
     public function update(Request $request, Championship $championship)
     {
+        if ($request->class2 == $request->class1 ||
+            $request->class3 == $request->class1 ||
+            $request->class3 == $request->class2)
+        {
+            return back()->with('warning', 'Please choose different classes.');
+        }
+
+        if (($request->class2.isNonEmptyString() && $request->class1.isEmptyOrNullString()) ||
+            ($request->class3.isNonEmptyString() && $request->class2.isEmptyOrNullString()) ||
+            ($request->class3.isNonEmptyString() && $request->class1.isEmptyOrNullString()))
+        {
+            return back()->with('warning', 'Please choose classes in right order.');
+        }
+
         $request->validate([
             'name' => 'required',
             'active' => 'required',

@@ -24,18 +24,22 @@
                             @endif </p>
 
                         <div class="grid gap-6 md:grid-cols-2">
-                            <a href="{{ route('admin.championships.edit', $championship->id) }}" class="inline-flex items-center px-14 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                                Edit
-                            </a>
-                            <a href="{{ route('admin.championships.edit', $championship->id) }}" class="inline-flex items-center px-11 py-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                                Delete
-                            </a>
+                            <form class="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+                                  action="{{ route('admin.championships.edit', $championship->id) }}">
+                                <button id="button" type="submit">Edit</button>
+                            </form>
+                            <form class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+                                  method="POST" action="{{ route('admin.championships.destroy', $championship->id) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button id="button" type="submit">Delete</button>
+                            </form>
                         </div>
                     </div>
                 @endforeach
 
                     <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-                        <a href="{{ route('admin.championships.show', 1) }}">
+                        <a href="{{ route('admin.championships.create') }}">
                             <h5 class="mb-5 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Add new...</h5>
                         </a>
                         <p class="mb-1 font-normal text-gray-700 dark:text-gray-400"></p>

@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('championships', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->boolean('active');
-            $table->boolean('multiclass');
+            $table->boolean('active')->default('false');
+            $table->boolean('multiclass')->default('false');
             $table->integer('class1');
             $table->integer('class2');
             $table->integer('class3');

@@ -1,6 +1,7 @@
 <head>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <title>Login</title>
     <style>
         .body-bg {
             background-color: #1F2937;
@@ -68,7 +69,7 @@
     </main>
 
     <div class="max-w-lg mx-auto text-center mt-12 mb-6">
-        <p class="text-white">Don't have an account? <a href="#" class="font-bold hover:underline">Sign up</a>.</p>
+        <p class="text-white">Don't have an account? <a href="{{ route('register') }}" class="font-bold hover:underline">Sign up</a>.</p>
     </div>
 
 </body>

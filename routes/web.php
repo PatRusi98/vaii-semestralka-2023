@@ -29,6 +29,26 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::controller(TeamsController::class)->group(function (){
+    Route::get('index', 'index');
+    Route::get('pagination-ajax', 'paginationAjax');
+});
+
+Route::controller(CarController::class)->group(function (){
+    Route::get('index', 'index');
+    Route::get('pagination-ajax', 'paginationAjax');
+});
+
+Route::controller(PointSystemController::class)->group(function (){
+    Route::get('index', 'index');
+    Route::get('pagination-ajax', 'paginationAjax');
+});
+
+Route::controller(DriversController::class)->group(function (){
+    Route::get('index', 'index');
+    Route::get('pagination-ajax', 'paginationAjax');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

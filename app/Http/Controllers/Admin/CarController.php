@@ -18,7 +18,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::all();
+        $cars = Car::paginate(10);
         return view('admin.cars.index', compact('cars'));
     }
 
@@ -109,5 +109,14 @@ class CarController extends Controller
     {
         $car->delete();
         return to_route('admin.cars.index')->with('success', 'Car deleted successfully.');
+    }
+
+    public function paginationAjax(Request $request)
+    {
+        if ($request->ajax())
+        {
+            $cars = Car::paginate(10);
+            return view('admin.cars.pagination_data', compact('cars'))->render();
+        }
     }
 }

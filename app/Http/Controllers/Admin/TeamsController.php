@@ -17,7 +17,7 @@ class TeamsController extends Controller
      */
     public function index()
     {
-        $teams = Teams::all();
+        $teams = Teams::paginate(10);
         return view('admin.teams.index', compact('teams'));
     }
 
@@ -109,5 +109,14 @@ class TeamsController extends Controller
     {
         $team->delete();
         return to_route('admin.teams.index')->with('success', 'Team deleted successfully.');
+    }
+
+    public function paginationAjax(Request $request)
+    {
+        if ($request->ajax())
+        {
+            $teams = Teams::paginate(10);
+            return view('admin.teams.pagination_data', compact('teams'))->render();
+        }
     }
 }

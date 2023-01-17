@@ -16,7 +16,7 @@ class PointSystemController extends Controller
      */
     public function index()
     {
-        $pointSystems = PointSystem::all();
+        $pointSystems = PointSystem::paginate(10);
         return view('admin.point-systems.index', compact('pointSystems'));
     }
 
@@ -151,5 +151,14 @@ class PointSystemController extends Controller
     {
         $pointSystem->delete();
         return to_route('admin.point-systems.index')->with('success', 'Point system deleted successfully.');
+    }
+
+    public function paginationAjax(Request $request)
+    {
+        if ($request->ajax())
+        {
+            $pointSystems = PointSystem::paginate(10);
+            return view('admin.point-systems.pagination_data', compact('pointSystems'))->render();
+        }
     }
 }

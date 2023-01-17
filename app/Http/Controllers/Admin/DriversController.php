@@ -18,7 +18,7 @@ class DriversController extends Controller
      */
     public function index()
     {
-        $drivers = Driver::all();
+        $drivers = Driver::paginate(10);
         return view('admin.drivers.index', compact('drivers'));
     }
 
@@ -115,5 +115,14 @@ class DriversController extends Controller
     {
         $driver->delete();
         return to_route('admin.drivers.index')->with('success', 'Driver deleted successfully.');
+    }
+
+    public function paginationAjax(Request $request)
+    {
+        if ($request->ajax())
+        {
+            $drivers = Driver::paginate(10);
+            return view('admin.drivers.pagination_data', compact('drivers'))->render();
+        }
     }
 }

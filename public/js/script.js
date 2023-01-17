@@ -16,20 +16,6 @@ $.ajaxSetup({
     }
 });
 
-//riesenie pri zapise do databazy z checkboxu 'active'
-$(function (){
-    activeState();
-    $("#active").click(activeState);
-});
-
-function activeState(){
-    if(this.checked){
-        $("#activeHidden").attr("disabled", true);
-    } else {
-        $("#activeHidden").removeAttr("disabled");
-    }
-}
-
 //ajax call pri vytvarani noveho sampionatu
 $(".btn-submit").click(function(e){
 
@@ -62,34 +48,6 @@ $(".btn-submit").click(function(e){
     });
 });
 
-//riesenie zapisu do databazy so spravnymi hodnotami pri checkboxoch a zobrazenie ostatnych tried len pri multiclasse
-$(function(){
-    enableGroups();
-    $("#multiclass").click(enableGroups);
-});
-
-function enableGroups(){
-    if(this.checked){
-        $("#class2").removeAttr("disabled");
-        $("#class3").removeAttr("disabled");
-        $("#multiclassHidden").attr("disabled", true);
-        $("#class2Hidden").attr("disabled", true);
-        $("#class3Hidden").attr("disabled", true);
-        // document.getElementById('multiclassHidden').disabled = true;
-        // document.getElementById('class2Hidden').disabled = true;
-        // document.getElementById('class3Hidden').disabled = true;
-    } else {
-        $("#class2").attr("disabled", true);
-        $("#class3").attr("disabled", true);
-        $("#multiclassHidden").removeAttr("disabled");
-        $("#class2Hidden").removeAttr("disabled");
-        $("#class3Hidden").removeAttr("disabled");
-        // document.getElementById('multiclassHidden').disabled = false;
-        // document.getElementById('class2Hidden').disabled = false;
-        // document.getElementById('class3Hidden').disabled = false;
-    }
-}
-
 //paginator
 $(document).ready(function (){
     $(document).on('click', '.pagination a', function(event){
@@ -108,3 +66,39 @@ $(document).ready(function (){
         });
     }
 });
+
+//handler na zapis spravnej hodnoty do databazy pri checkboxe active
+$(function (){
+    activeState();
+    $("#active").click(activeState);
+});
+
+function activeState(){
+    if(this.checked){
+        $("#activeHidden").attr("disabled", true);
+    } else {
+        $("#activeHidden").removeAttr("disabled");
+    }
+}
+
+//handler na zapis spravnej hodnoty do databazy pri checkboxe multiclass
+$(function(){
+    enableGroups();
+    $("#multiclass").click(enableGroups);
+});
+
+function enableGroups(){
+    if(this.checked){
+        $("#class2").removeAttr("disabled");
+        $("#class3").removeAttr("disabled");
+        $("#multiclassHidden").attr("disabled", true);
+        $("#class2Hidden").attr("disabled", true);
+        $("#class3Hidden").attr("disabled", true);
+    } else {
+        $("#class2").attr("disabled", true);
+        $("#class3").attr("disabled", true);
+        $("#multiclassHidden").removeAttr("disabled");
+        $("#class2Hidden").removeAttr("disabled");
+        $("#class3Hidden").removeAttr("disabled");
+    }
+}

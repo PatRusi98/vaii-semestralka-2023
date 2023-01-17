@@ -134,4 +134,40 @@
 
 </x-admin-layout>
 
+<script>
+    $(function (){
+        activeState();
+        $("#active").click(activeState);
+    });
+
+    function activeState(){
+        if(this.checked){
+            $("#activeHidden").attr("disabled", true);
+        } else {
+            $("#activeHidden").removeAttr("disabled");
+        }
+    }
+
+    $(function(){
+        enableGroups();
+        $("#multiclass").click(enableGroups);
+    });
+
+    function enableGroups(){
+        if(this.checked){
+            $("#class2").removeAttr("disabled");
+            $("#class3").removeAttr("disabled");
+            $("#multiclassHidden").attr("disabled", true);
+            $("#class2Hidden").attr("disabled", true);
+            $("#class3Hidden").attr("disabled", true);
+        } else {
+            $("#class2").attr("disabled", true);
+            $("#class3").attr("disabled", true);
+            $("#multiclassHidden").removeAttr("disabled");
+            $("#class2Hidden").removeAttr("disabled");
+            $("#class3Hidden").removeAttr("disabled");
+        }
+    }
+</script>
+
 

@@ -1,0 +1,64 @@
+pr-body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.obrazok {
+    width: 400px;
+    height: 150px;
+}
+
+.cards {
+    width: 99vmax;
+}
+
+.pr-small-container {
+    max-width: 1000px;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+    top: 50px;
+    margin-top: 50px;
+}
+
+.pr-col {
+    float: left;
+    width: 33.33%;
+    transition: transform 0.5s;
+}
+
+.pr-col img {
+    width: 70%;
+}
+
+.pr-col:hover {
+    transform: translateY(-5px);
+}
+
+.pr-row {
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.pr-row a {
+    text-decoration: none;
+    color: black;
+}
+
+.featured {
+    min-height: 300px;
+    margin-bottom: 50px;
+}
+
+.pr-footer {
+    background-color: rgba(0, 0, 0, 0.025);
+}
+
+.pr-freeraces {
+    min-height: 500px;
+    margin-top: 50px;
+}
+
+.pr-card {
+    margin-top: 50px;
+    max-width: 99vmax;
+}

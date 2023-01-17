@@ -25,7 +25,6 @@
                     <span class="self-center text-xl font-semibold whitespace-nowrap text-white">Race Portal</span>
                 </a>
                 <div class="flex items-center">
-                    <a href="tel:5541251234" class="mr-6 text-sm font-medium text-white hover:underline"></a>
                     <a href="{{ url('/admin') }}" class="text-sm font-medium text-blue-500 hover:underline">Administration</a>
                 </div>
             </div>
@@ -35,19 +34,19 @@
                 <div class="flex items-center">
                     <ul class="flex flex-row mt-0 mr-6 space-x-8 text-sm font-medium">
                         <li>
-                            <a href="#" class="text-white hover:underline" aria-current="page">Home</a>
+                            <a href="/" class="text-white hover:underline" aria-current="page">Home</a>
                         </li>
                         <li>
-                            <a href="#" class="text-white hover:underline">Championships</a>
+                            <a href="{{ route('championship.index') }}" class="text-white hover:underline">Championships</a>
                         </li>
                         <li>
-                            <a href="#" class="text-white hover:underline">Drivers</a>
+                            <a href="{{ route('driver.index') }}" class="text-white hover:underline">Drivers</a>
                         </li>
                         <li>
-                            <a href="#" class="text-white hover:underline">Teams</a>
+                            <a href="{{ route('team.index') }}" class="text-white hover:underline">Teams</a>
                         </li>
                         <li>
-                            <a href="#" class="text-white hover:underline">Cars</a>
+                            <a href="{{ route('car.index') }}" class="text-white hover:underline">Cars</a>
                         </li>
                     </ul>
                 </div>

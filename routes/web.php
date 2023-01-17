@@ -6,8 +6,11 @@ use App\Http\Controllers\Admin\ChampionshipController;
 use App\Http\Controllers\Admin\DriversController;
 use App\Http\Controllers\Admin\PointSystemController;
 use App\Http\Controllers\Admin\TeamsController;
-use App\Http\Controllers\Admin\TimeTrialsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Website\CarController as WebsiteCarController;
+use App\Http\Controllers\Website\ChampionshipController as WebsiteChampionshipController;
+use App\Http\Controllers\Website\DriversController as WebsiteDriversController;
+use App\Http\Controllers\Website\TeamsController as WebsiteTeamsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +31,13 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/car', [WebsiteCarController::class, 'index'])->name('car.index');
+Route::get('/team', [WebsiteTeamsController::class, 'index'])->name('team.index');
+Route::get('/team/{team}', [WebsiteTeamsController::class, 'show'])->name('team.show');
+Route::get('/driver', [WebsiteDriversController::class, 'index'])->name('driver.index');
+Route::get('/driver/{driver}', [WebsiteDriversController::class, 'show'])->name('driver.show');
+Route::get('/championship', [WebsiteChampionshipController::class, 'index'])->name('championship.index');
 
 Route::controller(TeamsController::class)->group(function (){
     Route::get('index', 'index');
@@ -58,7 +68,6 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'admin'])->name('admin.')->prefix('admin')->group(function() {
     Route::get('/', [AdminController::class, 'index'])->name('index');
     Route::resource('/championships', ChampionshipController::class);
-    Route::resource('/time-trials', TimeTrialsController::class);
     Route::resource('/drivers', DriversController::class);
     Route::resource('/teams', TeamsController::class);
     Route::resource('/cars', CarController::class);

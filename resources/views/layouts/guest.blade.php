@@ -34,19 +34,19 @@
             <div class="max-w-screen-xl px-4 py-3 mx-auto md:px-6">
                 <div class="flex items-center">
                     <ul class="flex flex-row mt-0 mr-6 space-x-8 text-sm font-medium">
-                        <li>
+                        <li class="pr-nav">
                             <a href="/" class="text-white hover:underline" aria-current="page">Home</a>
                         </li>
-                        <li>
+                        <li class="pr-nav">
                             <a href="{{ route('championship.index') }}" class="text-white hover:underline">Championships</a>
                         </li>
-                        <li>
+                        <li class="pr-nav">
                             <a href="{{ route('driver.index') }}" class="text-white hover:underline">Drivers</a>
                         </li>
-                        <li>
+                        <li class="pr-nav">
                             <a href="{{ route('team.index') }}" class="text-white hover:underline">Teams</a>
                         </li>
-                        <li>
+                        <li class="pr-nav">
                             <a href="{{ route('car.index') }}" class="text-white hover:underline">Cars</a>
                         </li>
                     </ul>
@@ -63,34 +63,34 @@
             <div class="md:flex md:justify-center">
                 <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
                     <div>
-                        <h2 class="mb-6 text-sm font-semibold uppercase text-white">Simulators</h2>
+                        <h2 class="mb-6 text-sm font-semibold uppercase text-white pr-footer">Simulators</h2>
                         <ul class="text-gray-400">
-                            <li class="mb-4">
+                            <li class="mb-4  pr-footer-item">
                                 <a href="#" class="hover:underline">rFactor 2</a>
                             </li>
-                            <li>
+                            <li class="pr-footer-item">
                                 <a href="#" class="hover:underline">Assetto Corsa</a>
                             </li>
                         </ul>
                     </div>
                     <div>
-                        <h2 class="mb-6 text-sm font-semibold uppercase text-white">Follow us</h2>
+                        <h2 class="mb-6 text-sm font-semibold uppercase text-white pr-footer">Follow us</h2>
                         <ul class="text-gray-400">
-                            <li class="mb-4">
-                                <a href="#" class="hover:underline ">Instagram</a>
+                            <li class="mb-4 pr-footer-item">
+                                <a href="#" class="hover:underline">Instagram</a>
                             </li>
-                            <li>
+                            <li class="pr-footer-item">
                                 <a href="#" class="hover:underline">Discord</a>
                             </li>
                         </ul>
                     </div>
                     <div>
-                        <h2 class="mb-6 text-sm font-semibold uppercase text-white">Useful Links</h2>
+                        <h2 class="mb-6 text-sm font-semibold uppercase text-white pr-footer">Useful Links</h2>
                         <ul class="text-gray-400">
-                            <li class="mb-4">
+                            <li class="mb-4 pr-footer-item">
                                 <a href="#" class="hover:underline">Simhub</a>
                             </li>
-                            <li>
+                            <li class="pr-footer-item">
                                 <a href="#" class="hover:underline">Telemetry</a>
                             </li>
                         </ul>

@@ -32,7 +32,7 @@
 
     <div class="featured">
         <div class="pr-small-container">
-            <h2>Featured simulators</h2>
+            <h2 class="pr-h2">Featured simulators</h2>
             <div class="pr-row">
                 <div class="pr-col">
                     <img class="obrazok" src="img/rf2.png" alt="rFactor 2">

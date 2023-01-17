@@ -62,3 +62,32 @@ pr-body {
     margin-top: 50px;
     max-width: 99vmax;
 }
+
+.pr-h2 {
+    font-size: x-large;
+    font-style: inherit;
+}
+
+.pr-nav {
+    color: white;
+}
+
+.pr-nav:hover {
+    transform: translateY(-1px);
+}
+
+.pr-footer {
+    color: white;
+}
+
+.pr-footer:hover {
+    transform: translateY(-2px);
+}
+
+.pr-footer-item {
+    color: #a0aec0;
+}
+
+.pr-footer-item:hover {
+    transform: translateY(-1px);
+}

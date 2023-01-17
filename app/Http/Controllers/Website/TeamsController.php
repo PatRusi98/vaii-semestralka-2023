@@ -10,13 +10,21 @@ class TeamsController extends Controller
 {
     public function index()
     {
-        $teams = Teams::all();
+        $teams = Teams::paginate(9);
         return view('team.index', compact('teams'));
     }
 
-    public function show()
+    public function show(Team $team)
     {
-        $team = Teams::all();
         return view('team.show', compact('team'));
+    }
+
+    public function paginationAjax(Request $request)
+    {
+        if ($request->ajax())
+        {
+            $teams = Teams::paginate(9);
+            return view('team.pagination_data', compact('teams'))->render();
+        }
     }
 }

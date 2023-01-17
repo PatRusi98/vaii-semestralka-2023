@@ -10,7 +10,16 @@ class ChampionshipController extends Controller
 {
     public function index()
     {
-        $championships = Championship::all();
-        return view('car.index', compact('championships'));
+        $championships = Championship::paginate(9);
+        return view('championship.index', compact('championships'));
+    }
+
+    public function paginationAjax(Request $request)
+    {
+        if ($request->ajax())
+        {
+            $championships = Championship::paginate(9);
+            return view('championship.pagination_data', compact('championships'))->render();
+        }
     }
 }

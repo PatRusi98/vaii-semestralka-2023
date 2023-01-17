@@ -10,13 +10,21 @@ class DriversController extends Controller
 {
     public function index()
     {
-        $drivers = Driver::all();
+        $drivers = Driver::paginate(9);
         return view('driver.index', compact('drivers'));
     }
 
-    public function show()
+    public function show(Driver $driver)
     {
-        $driver = Driver::all();
         return view('driver.show', compact('driver'));
+    }
+
+    public function paginationAjax(Request $request)
+    {
+        if ($request->ajax())
+        {
+            $drivers = Driver::paginate(9);
+            return view('driver.pagination_data', compact('drivers'))->render();
+        }
     }
 }

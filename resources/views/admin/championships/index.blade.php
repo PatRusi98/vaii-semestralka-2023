@@ -18,11 +18,11 @@
                         <a href="{{ route('admin.championships.show', $championship->id) }}">
                             <h5 class="mb-5 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $championship->name }}</h5>
                         </a>
-                        <p class="mb-1 font-normal text-gray-700 dark:text-gray-400">Active: @if($championship->active == 1 ) yes @else no @endif </p>
+                        <p class="mb-1 font-normal text-gray-700 dark:text-gray-400">Active: @if($championship->active == '1') yes @else no @endif </p>
                         <p class="mb-5 font-normal text-gray-700 dark:text-gray-400">Classes:
-                            @if($championship->class2 == 0 || "none")
+                            @if($championship->class2 == 0 || $championship->class2 == 'none' || $championship->class2 == null)
                                 {{$championship->class1}}
-                            @elseif($championship->class3 == 0  || "none")
+                            @elseif($championship->class3 == 0  || $championship->class3 == 'none' || $championship->class3 == null)
                                 {{$championship->class1}}, {{$championship->class2}}
                             @else
                                 {{$championship->class1}}, {{$championship->class2}}, {{$championship->class3}}

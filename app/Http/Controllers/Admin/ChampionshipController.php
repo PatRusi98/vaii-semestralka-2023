@@ -41,22 +41,14 @@ class ChampionshipController extends Controller
      */
     public function store(ChampionsipStoreRequest $request)
     {
-        if ($request->class2 == $request->class1 ||
-            $request->class3 == $request->class1 ||
-            $request->class3 == $request->class2)
-        {
-            return back()->with('warning', 'Please choose different classes.');
+        if ($request->multiclass == 1) {
+            if ($request->class2 == $request->class1 ||
+                $request->class3 == $request->class1 ||
+                $request->class3 == $request->class2)
+            {
+                return back()->with('warning', 'Please choose different classes.');
+            }
         }
-
-//        if($request->multiclass == 1)
-//        {
-//            if (($request->class2.notNullValue() && $request->class1.isEmptyOrNullString()) ||
-//                ($request->class3.notNullValue() && $request->class2.isEmptyOrNullString()) ||
-//                ($request->class3.notNullValue() && $request->class1.isEmptyOrNullString()))
-//            {
-//                return back()->with('warning', 'Please choose classes in right order.');
-//            }
-//        }
 
         Championship::create([
             'name' => $request->name,
@@ -102,18 +94,13 @@ class ChampionshipController extends Controller
      */
     public function update(Request $request, Championship $championship)
     {
-        if ($request->class2 == $request->class1 ||
-            $request->class3 == $request->class1 ||
-            $request->class3 == $request->class2)
-        {
-            return back()->with('warning', 'Please choose different classes.');
-        }
-
-        if (($request->class2.isNonEmptyString() && $request->class1.isEmptyOrNullString()) ||
-            ($request->class3.isNonEmptyString() && $request->class2.isEmptyOrNullString()) ||
-            ($request->class3.isNonEmptyString() && $request->class1.isEmptyOrNullString()))
-        {
-            return back()->with('warning', 'Please choose classes in right order.');
+        if ($request->multiclass == 1) {
+            if ($request->class2 == $request->class1 ||
+                $request->class3 == $request->class1 ||
+                $request->class3 == $request->class2)
+            {
+                return back()->with('warning', 'Please choose different classes.');
+            }
         }
 
         $request->validate([

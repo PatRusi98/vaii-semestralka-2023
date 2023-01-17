@@ -19,12 +19,14 @@
                     <div class="flex items-start">
                         <div class="flex items-center h-5">
                             <input id="active" name="active" type="checkbox" value="1" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300">
+                            <input id="activeHidden" name="active" type="hidden" value="0" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300">
                         </div>
                         <label for="active" class="ml-2 text-sm font-medium text-gray-900">Active</label>
                     </div>
                     <div class="flex items-start">
                         <div class="flex items-center h-5">
                             <input id="multiclass" name="multiclass" type="checkbox" value="1" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300">
+                            <input id="multiclassHidden" name="multiclass" type="hidden" value="0" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300">
                         </div>
                         <label for="multiclass" class="ml-2 text-sm font-medium text-gray-900">Multiclass</label>
                     </div>
@@ -39,6 +41,7 @@
                     </div>
                     <div>
                         <label for="class2" class="block mb-2 text-sm font-medium text-gray-900">Class 2</label>
+                        <input id="class2Hidden" name="class2" type="hidden" value="none" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300">
                         <select id="class2" name="class2" class="multiclass bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                             <option selected disabled>Choose class...</option>
                             @foreach($carClasses as $carClass)
@@ -48,6 +51,7 @@
                     </div>
                     <div>
                         <label for="class3" class="block mb-2 text-sm font-medium text-gray-900">Class 3</label>
+                        <input id="class3Hidden" name="class3" type="hidden" value="none" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300">
                         <select id="class3" name="class3" class="multiclass bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                             <option selected disabled>Choose class...</option>
                             @foreach($carClasses as $carClass)
@@ -62,21 +66,3 @@
         </div>
     </div>
 </x-admin-layout>
-
-
-<script>
-    $(function(){
-        enableGroups();
-        $("#multiclass").click(enableGroups);
-    });
-
-    function enableGroups(){
-        if(this.checked){
-            $("#class2").removeAttr("disabled");
-            $("#class3").removeAttr("disabled");
-        } else {
-            $("#class2").attr("disabled", true);
-            $("#class3").attr("disabled", true);
-        }
-    }
-</script>

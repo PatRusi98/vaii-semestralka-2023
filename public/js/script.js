@@ -19,14 +19,14 @@ $.ajaxSetup({
 //riesenie pri zapise do databazy z checkboxu 'active'
 $(function (){
     activeState();
-    $("active").click(activeState);
+    $("#active").click(activeState);
 });
 
 function activeState(){
     if(this.checked){
-        document.getElementById('activeHidden').disabled = true;
+        $("#activeHidden").attr("disabled", true);
     } else {
-        document.getElementById('activeHidden').disabled = false;
+        $("#activeHidden").removeAttr("disabled");
     }
 }
 
@@ -72,15 +72,21 @@ function enableGroups(){
     if(this.checked){
         $("#class2").removeAttr("disabled");
         $("#class3").removeAttr("disabled");
-        document.getElementById('multiclassHidden').disabled = true;
-        document.getElementById('class2Hidden').disabled = true;
-        document.getElementById('class3Hidden').disabled = true;
+        $("#multiclassHidden").attr("disabled", true);
+        $("#class2Hidden").attr("disabled", true);
+        $("#class3Hidden").attr("disabled", true);
+        // document.getElementById('multiclassHidden').disabled = true;
+        // document.getElementById('class2Hidden').disabled = true;
+        // document.getElementById('class3Hidden').disabled = true;
     } else {
         $("#class2").attr("disabled", true);
         $("#class3").attr("disabled", true);
-        document.getElementById('multiclassHidden').disabled = false;
-        document.getElementById('class2Hidden').disabled = false;
-        document.getElementById('class3Hidden').disabled = true;
+        $("#multiclassHidden").removeAttr("disabled");
+        $("#class2Hidden").removeAttr("disabled");
+        $("#class3Hidden").removeAttr("disabled");
+        // document.getElementById('multiclassHidden').disabled = false;
+        // document.getElementById('class2Hidden').disabled = false;
+        // document.getElementById('class3Hidden').disabled = false;
     }
 }
 
